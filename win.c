@@ -1,18 +1,8 @@
 /* CheckBox Example
-sc CheckBox.c LINK LIB lib:reaction.lib NOSTACKCHECK
+sc win.c LINK LIB lib:reaction.lib NOSTACKCHECK
 quit
 */
 
-/**
- **  CheckBox class Example.
- **
- **  This is a simple example testing some of the capabilities of the
- **  CheckBox gadget class.
- **
- **  This code opens a window and then creates 2 CheckBox gadgets which
- **  are subsequently attached to the window's gadget list.  One uses
- **  arrows, one does not.  Notice that you can tab cycle between them.
- **/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,7 +46,6 @@ quit
 enum
 {
 	GID_MAIN=0,
-
 	GID_QUIT,
 	GID_LAST
 };
@@ -91,17 +80,17 @@ int main(void)
 		/* Create the window object.
 		 */
 		objects[OID_MAIN] = WindowObject,
-			WA_ScreenTitle, "ReAction",
-			WA_Title, "ReAction CheckBox Example",
-			WA_Activate, TRUE,
+			WA_ScreenTitle, "ReAction", //Workbench barında görünen adı
+			WA_Title, "ReAction CheckBox Example", // Pencere başlığındaki adı
+			WA_Activate, TRUE, //Açıldığında aktif pencere olsun
 			WA_DepthGadget, TRUE,
-			WA_DragBar, TRUE,
-			WA_CloseGadget, TRUE,
-			WA_SizeGadget, TRUE,
-			WINDOW_IconifyGadget, TRUE,
-			WINDOW_IconTitle, "CheckBox",
+			WA_DragBar, TRUE, //
+			WA_CloseGadget, TRUE, //Kapatma düğmesi
+			WA_SizeGadget, TRUE, //Boyutlandırma düğmesi
+			WINDOW_IconifyGadget, TRUE, //Simge durumu düğmesi
+			WINDOW_IconTitle, "CheckBox", //Simge durumunda görünen adı
 			WINDOW_AppPort, AppPort,
-			WINDOW_Position, WPOS_CENTERMOUSE,
+			WINDOW_Position, WPOS_CENTERMOUSE, //Pencere açıldığıda ortası fare altında olsun
 			WINDOW_ParentGroup, gadgets[GID_MAIN] = VGroupObject,
 				LAYOUT_SpaceOuter, TRUE,
 				LAYOUT_DeferLayout, TRUE,
@@ -123,20 +112,19 @@ int main(void)
 						LABEL_Text, "as the check box itself.\n",
 					LabelEnd,
 				LayoutEnd,
-
+				//2 tane quit butonu oluştur
 				LAYOUT_AddChild, ButtonObject,
 					GA_ID, GID_QUIT,
 					GA_RelVerify, TRUE,
 					GA_Text,"_Quit",
 				ButtonEnd,
-				//CHILD_WeightedHeight, 0,
+				//CHILD_WeightedHeight, 0, //bu verilmez ise buton boyutlanır
 				LAYOUT_AddChild, ButtonObject,
-					GA_ID, GID_QUIT,
+					GA_ID, GID_QUIT, //ID GID_QUIT
 					GA_RelVerify, TRUE,
 					GA_Text,"_Quit",
 				ButtonEnd,
-				CHILD_WeightedHeight, 0,
-
+				CHILD_WeightedHeight, 0, //bunun ile buton yüksekliği sabitlenir
 			EndGroup,
 		EndWindow;
 
