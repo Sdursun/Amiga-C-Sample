@@ -1,3 +1,5 @@
+//sc LINK simple_win.c NOSTACKCHECK
+
 #include <exec/types.h>
 #include <intuition/intuition.h>
 #include <proto/exec.h>
@@ -10,16 +12,16 @@ int main(void) {
     
     BOOL running = TRUE;
 
-    // Baþlangýçta Intuition kütüphanesini aç
+    // BaÃ¾langÃ½Ã§ta Intuition kÃ¼tÃ¼phanesini aÃ§
     IntuitionBase = (struct IntuitionBase *)OpenLibrary("intuition.library", 37);
     if (!IntuitionBase) {
-        printf("Intuition kütüphanesi açýlamadý.\n");
+        printf("Intuition kÃ¼tÃ¼phanesi aÃ§Ã½lamadÃ½.\n");
         return 1;
     }
 
-    // Pencereyi aç
+    // Pencereyi aÃ§
     window = OpenWindowTags(NULL,
-        WA_Title, (ULONG)"Amiga NDK 3.2 Pencere Örneði",
+        WA_Title, (ULONG)"Amiga NDK 3.2 Pencere Ã–rneÄŸi",
         WA_Width, 400,
         WA_Height, 200,
         WA_CloseGadget, TRUE,
@@ -29,12 +31,12 @@ int main(void) {
         TAG_END);
 
     if (!window) {
-        printf("Pencere oluþturulamadý.\n");
+        printf("Pencere oluÃ¾turulamadÃ½.\n");
         CloseLibrary((struct Library *)IntuitionBase);
         return 1;
     }
 
-    // Pencerenin kapatýlmasýný bekleyin
+    // Pencerenin kapatÃ½lmasÃ½nÃ½ bekleyin
     
     while (running) {
         ULONG signals = Wait(1L << window->UserPort->mp_SigBit);
@@ -52,7 +54,7 @@ int main(void) {
     // Pencereyi kapat
     CloseWindow(window);
 
-    // Intuition kütüphanesini kapat
+    // Intuition kÃ¼tÃ¼phanesini kapat
     CloseLibrary((struct Library *)IntuitionBase);
 
     return 0;
