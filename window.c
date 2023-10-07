@@ -14,7 +14,7 @@ int main()
 	ULONG WinTags[] = {
                         WA_Width,    	200,
                         WA_Height,   	100,
-                        WA_Title,    	(ULONG)&Title,
+                        WA_Title,    	(ULONG)&Title, //Pencere başlığı burada oluşturulur
                         WA_Activate, 	1,
 			TAG_END
                      };
